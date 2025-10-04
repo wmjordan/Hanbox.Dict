@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="增订伪药条辨"
+	author="清·郑奋扬">
+	<documentation path="序.md"/>
+	<documentation path="绪言.md"/>
+	<documentation path="陈序.md"/>
+	<documentation path="自序.md"/>
+	<documentation path="劝戒刍言.md"/>
+	<documentation path="例言.md"/>
+	<documentation path="目录.md" textEncoding="utf-8"/>
+	<documentation path="跋.md"/>
+	<categories>
+		<category name="zdwytb" description="增订伪药条辨"/>
+	</categories>
+	<fields>
+		<field name="content" category="zdwytb" description="内容" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="_([^_]+)_" replacement="&lt;b>&lt;u>$1&lt;/u>&lt;/b>"/>
+			<replace pattern="\*\*(.+?)\*\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="`(.+?)`" replacement="&lt;u>$1&lt;/u>"/>
+		</field>
+	</fields>
+	<data file="伪药条辨.md" encoding="utf-8" startLine="13" synonymDelimiter="、" allowEmptyLine="true">
+		<word pattern="^# " removePattern="true"/>
+		<row field="content"/>
+	</data>
+</config>

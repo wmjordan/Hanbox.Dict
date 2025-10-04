@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="黄帝内经"
+	textEncoding="gb18030">
+	<categories>
+		<category name="hdnj" description="黄帝内经"/>
+	</categories>
+	<documentation path="目录.html"/>
+	<fields>
+		<field name="content" description="内容" valueType="标记" fieldNameVisible="no">
+			<replace pattern="\{([^\}]+)\}" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="_([^_]+)_" replacement="&lt;b>&lt;u>$1&lt;/u>&lt;/b>"/>
+			<replace pattern="\*\*(.+?)\*\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\*([^\*]+)\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+		</field>
+		<field name="chen" category="hdnj" description="臣" valueType="标记" fieldNameVisible="no" fullText="yes" cssClass="definition">
+			<replace pattern="^（.+?曰：）"/>
+			<replace pattern="^(岐伯|伯高|少俞|少师|雷公|鬼臾区)(.*?曰：)?" replacement="&lt;b>$1$2&lt;/b>"/>
+			<replace pattern="\{([^\}]+)\}" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="_([^_]+)_" replacement="&lt;b>&lt;u>$1&lt;/u>&lt;/b>"/>
+			<replace pattern="\*\*(.+?)\*\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\*([^\*]+)\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="（.+?）">
+				<replacement><![CDATA[<span style="font-size: 90%">$0</span>]]></replacement>
+			</replace>
+		</field>
+		<field name="huangdi" category="hdnj" description="黄帝" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="^(帝|黄帝)(.*?曰：)?" replacement="&lt;b>$1$2&lt;/b>"/>
+			<replace pattern="\{([^\}]+)\}" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="_([^_]+)_" replacement="&lt;b>&lt;u>$1&lt;/u>&lt;/b>"/>
+			<replace pattern="\*\*(.+?)\*\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\*([^\*]+)\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="（.+?）">
+				<replacement><![CDATA[<span style="font-size: 90%">$0</span>]]></replacement>
+			</replace>
+		</field>
+		<field name="chapter" description="篇次" cssClass="section" />
+		<field name="proof" description="校对" style="font-size: 90%"/>
+	</fields>
+	<filters>
+		<ignore pattern="^卷之"/>
+		<ignore pattern="^$"/>
+	</filters>
+	<data file="素问.md|灵枢.md" encoding="GBK" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="false">
+		<word pattern="^# " removePattern="yes"/>
+		<row field="3" pattern="^(黄帝|帝)">
+		</row>
+		<row field="2" pattern="^（?(岐伯|伯高|少俞|少师|雷公|鬼臾区)">
+		</row>
+		<row field="4" pattern="^篇次：" removePattern="yes" multilineDefinition="no"/>
+		<row field="5" pattern="^校对：" removePattern="yes" multilineDefinition="no"/>
+		<row field="1">
+		</row>
+	</data>
+</config>

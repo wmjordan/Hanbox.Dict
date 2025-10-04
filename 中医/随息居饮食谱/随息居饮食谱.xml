@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config
+	title="随息居饮食谱"
+	author="王士雄"
+	textEncoding="gb18030">
+	<documentation path="前序.txt"/>
+	<documentation path="后序.txt"/>
+	<documentation path="饮食谱题辞.md"/>
+	<documentation path="目录.md"/>
+	<documentation path="董耀跋.txt"/>
+	<documentation path="吕大纲跋.txt"/>
+	<fields>
+		<field name="content" description="内容" valueType="标记" fullText="yes" fieldNameVisible="no">
+			<replace pattern="`(.+?)`">
+				<replacement><b>$1</b></replacement>
+			</replace>
+			<replace pattern="==(.+?)==">
+				<replacement><b>$1</b></replacement>
+			</replace>
+			<replace pattern="\*\*(.+?)\*\*">
+				<replacement><b>$1</b></replacement>
+			</replace>
+			<replace pattern="\[(.+?)\]">
+				<replacement><ref>$1</ref></replacement>
+			</replace>
+			<replace pattern="（(.+?)。?）">
+				<replacement><span class="note">（$1）</span></replacement>
+			</replace>
+		</field>
+	</fields>
+	<data file="随息居饮食谱.md" encoding="Unicode" allowEmptyLine="true">
+		<filters>
+			<replace pattern="^→"/>
+		</filters>
+		<word pattern="^#+ ">
+			<replace pattern="^# .+"/>
+			<replace pattern="^## "/>
+		</word>
+		<row field="1" synonymPattern="`([^`]+)`">
+		</row>
+	</data>
+</config>

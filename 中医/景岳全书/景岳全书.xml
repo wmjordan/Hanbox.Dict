@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="景岳全书"
+	author="张介宾"
+	textEncoding="gb18030">
+	<categories>
+		<category name="jyqs" description="景岳全书"/>
+	</categories>
+	<documentation path="全书纪略.md" textEncoding="utf-8"/>
+	<documentation path="鲁超序.md" textEncoding="utf-8"/>
+	<documentation path="贾棠序.md"/>
+	<documentation path="查嗣瑮序.md"/>
+	<documentation path="范时崇序.md"/>
+	<fields>
+		<field name="content" description="内容" valueType="标记" fieldNameVisible="no">
+			<replace pattern="\{([^\}]+)\}" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\*\*(.+?)\*\*" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\*([^\*]+)\*" replacement="&lt;i>$1&lt;/i>"/>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="^([^`《，。 （）]+)(（[^，。（）]+[一二三四五六七八九十百][）　])" replacement="&lt;ref>$1&lt;/ref>$2"/>
+			<replace pattern="^([`《][^`，。 （）]+[`》]氏?)([^`，。 （）]+)(（[^，。（）]+[一二三四五六七八九十百][）　])" replacement="$1&lt;ref>$2&lt;/ref>$3"/>
+			<replace pattern="^## (.+)">
+				<replacement><![CDATA[<b><u>$1</u></b>]]></replacement>
+			</replace>
+			<replace pattern="^#(.+)">
+				<replacement><![CDATA[<span class="section">$1</span>]]></replacement>
+			</replace>
+			<replace pattern="`([^`]+)`" replacement="&lt;u>$1&lt;/u>"/>
+		</field>
+		<field name="catelogue" description="篇章" fieldNameVisible="no" cssClass="categoryTitle">
+			<replace pattern="^@1" replacement="传忠录"/>
+			<replace pattern="^@2" replacement="脉神章"/>
+			<replace pattern="^@3" replacement="伤寒典"/>
+			<replace pattern="^@4" replacement="杂证谟"/>
+			<replace pattern="^@5" replacement="妇人规"/>
+			<replace pattern="^@6" replacement="小儿则"/>
+			<replace pattern="^@7" replacement="麻疹诠"/>
+			<replace pattern="^@8" replacement="痘疹诠"/>
+			<replace pattern="^@9" replacement="外科钤"/>
+			<replace pattern="^@a" replacement="本草正"/>
+			<replace pattern="^@b" replacement="新方八阵"/>
+			<replace pattern="^@c" replacement="古方八阵"/>
+		</field>
+		<field name="title" description="标题" fieldNameVisible="no" />
+		<field name="section" description="副标题" fieldNameVisible="no" />
+		<field name="subsection" description="次标题" fieldNameVisible="no"/>
+		<field name="prescription" description="方剂" fieldNameVisible="no">
+			<replace pattern="(^|　)(.+?)(（.+?）?)" replacement="$1&lt;ref>$2&lt;/ref>$3"/>
+		</field>
+		<field name="seealso" description="参见" valueType="标记">
+			<replace pattern="\b(.+?)\b" replacement="&lt;ref>$1&lt;/ref>"/>
+		</field>
+	</fields>
+	<data file="传忠录.md" encoding="utf-8" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="true">
+		<filters>
+			<replace pattern="^# (.+?)(（.+?）)">
+				<replacement><![CDATA[# $1
+@1
+-$1$2
+]]></replacement>
+			</replace>
+		</filters>
+		<word pattern="^# " removePattern="yes">
+			<replace pattern="([^@\n]+?)(篇|论|辨|再辨|余义|说|续论)" replacement="$1、$1$2"/>
+			<replace pattern="辨([^@\n]+)" replacement="$1、辨$1"/>
+		</word>
+		<row field="catelogue" pattern="^@"/>
+		<row field="title" pattern="^-" removePattern="yes"/>
+		<row field="section" pattern="^## " removePattern="yes"/>
+		<row field="seealso" pattern="> " removePattern="yes"/>
+		<row field="content"/>
+	</data>
+	<data file="脉神章.md" encoding="utf-8" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="true">
+		<filters>
+			<replace pattern="^#+ (.+?)(（.+?）)">
+				<replacement><![CDATA[# $1
+@2
+-$1$2
+]]></replacement>
+			</replace>
+		</filters>
+		<word pattern="^# " removePattern="yes"/>
+		<row field="catelogue" pattern="^@"/>
+		<row field="title" pattern="^-" removePattern="yes"/>
+		<row field="seealso" pattern="> " removePattern="yes"/>
+		<row field="content"/>
+	</data>
+	<data file="伤寒典.md" encoding="utf-8" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="true">
+		<filters>
+			<replace pattern="^# (.+?)(（.+?）)">
+				<replacement><![CDATA[# $1
+@3
+-$1$2
+]]></replacement>
+			</replace>
+			<replace pattern="^# (.+?)(篇|论|辨|再辨|余义|说|续论)" replacement="# $1、$1$2"/>
+			<replace pattern="^# (论|再论|辨)(.+?)" replacement="# $2、$1$2"/>
+		</filters>
+		<word pattern="^# " removePattern="yes"/>
+		<row field="catelogue" pattern="^@"/>
+		<row field="title" pattern="^-" removePattern="yes"/>
+		<row field="section" pattern="^## " removePattern="yes"/>
+		<row field="subsection" pattern="^### " removePattern="yes"/>
+		<row field="seealso" pattern="> " removePattern="yes"/>
+		<row field="content"/>
+	</data>
+	<data file="杂证谟.md" encoding="utf-8" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="true">
+		<filters>
+			<replace pattern="^# (.+)">
+				<replacement><![CDATA[# $1
+@4
+-$1
+]]></replacement>
+			</replace>
+		</filters>
+		<word pattern="^# " removePattern="yes"/>
+		<row field="catelogue" pattern="^@"/>
+		<row field="title" pattern="^-" removePattern="yes"/>
+		<row field="section" pattern="^## " removePattern="yes"/>
+		<row field="subsection" pattern="^### " removePattern="yes"/>
+		<row field="seealso" pattern="> " removePattern="yes"/>
+		<row field="content"/>
+	</data>
+	<data file="妇人规.md" encoding="utf-8" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="true">
+		<filters>
+			<replace pattern="^# (.+)">
+				<replacement><![CDATA[# $1
+@5
+-$1
+]]></replacement>
+			</replace>
+		</filters>
+		<word pattern="^# " removePattern="yes"/>
+		<row field="catelogue" pattern="^@"/>
+		<row field="title" pattern="^-" removePattern="yes"/>
+		<row field="section" pattern="^## " removePattern="yes"/>
+		<row field="subsection" pattern="^### " removePattern="yes"/>
+		<row field="seealso" pattern="> " removePattern="yes"/>
+		<row field="content"/>
+	</data>
+	<data file="小儿则.md" encoding="utf-8" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="true">
+		<filters>
+			<replace pattern="^# (.+)">
+				<replacement><![CDATA[# $1
+@6
+-$1
+]]></replacement>
+			</replace>
+		</filters>
+		<word pattern="^# " removePattern="yes"/>
+		<row field="catelogue" pattern="^@"/>
+		<row field="title" pattern="^-" removePattern="yes"/>
+		<row field="section" pattern="^## " removePattern="yes"/>
+		<row field="subsection" pattern="^### " removePattern="yes"/>
+		<row field="seealso" pattern="> " removePattern="yes"/>
+		<row field="content"/>
+	</data>
+</config>

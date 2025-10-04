@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config
+	title="神农本草经"
+	textEncoding="gb18030">
+	<categories>
+		<category name="snbcj" description="神农本草经"/>
+	</categories>
+	<documentation path="邵晋涵序.html"/>
+	<documentation path="张炯序.html"/>
+	<documentation path="孙星衍序.html"/>
+	<documentation path="周学海序.html"/>
+	<documentation path="吴氏本草十二条.txt"/>
+	<documentation path="本经佚文.txt"/>
+	<documentation path="诸药制使.md"/>
+	<fields>
+		<field name="taste" description="味" cssClass="title" valueType="标记" fullText="yes" fieldNameVisible="no"/>
+		<field name="feature" description="主" cssClass="section" valueType="标记" fullText="yes" fieldNameVisible="no">
+			<replace pattern="`([^`]+)`">
+				<replacement><b>$1</b></replacement>
+			</replace>
+		</field>
+		<field name="note" description="注" valueType="标记" fullText="yes" fieldNameVisible="no">
+			<replace pattern="`([^`]+)`">
+				<replacement><b>$1</b></replacement>
+			</replace>
+			<replace pattern="\[(.+?)\]">
+				<replacement><ref>$1</ref></replacement>
+			</replace>
+		</field>
+	</fields>
+	<data file="神农本草经.md" encoding="UTF-8" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true">
+		<word pattern="^#+ " removePattern="true"/>
+		<row pattern="^味" field="1" multilineDefinition="false">
+			<replace pattern="。$" replacement=""/>
+		</row>
+		<row pattern="^主" field="2" synonymPattern="`([^`]+)`" multilineDefinition="false"/>
+		<row pattern="^=" field="0" synonymPattern="\b([^、]+?)\b" multilineDefinition="false"/>
+		<row field="3" synonymPattern="`([^`]+)`" />
+	</data>
+</config>

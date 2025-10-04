@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="本草害利"
+	author="清·凌奂">
+	<documentation path="自序.md" textEncoding="gbk"/>
+	<documentation path="目录.md" textEncoding="utf-8"/>
+	<fields>
+		<field name="category" cssClass="categoryTitle" description="部队" fieldNameVisible="no" mergeAdjacentField="true" adjacentFieldDelimiter="、"/>
+		<field name="content" description="内容" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="〔.+〕" replacement="&lt;b>$0&lt;/b>"/>
+		</field>
+	</fields>
+	<data file="本草害利目录.txt" encoding="GBK" synonymDelimiter="、">
+		<column field="1"/>
+	</data>
+	<data file="本草害利.md" encoding="utf-8" synonymDelimiter="、" allowEmptyLine="true">
+		<word pattern="^# " removePattern="true"/>
+		<row field="2">
+			<ignore pattern="药队〔" useRegex="false"/>
+			<ignore pattern="（见" useRegex="false" />
+			<ignore pattern="（同上" useRegex="false" />
+		</row>
+	</data>
+</config>

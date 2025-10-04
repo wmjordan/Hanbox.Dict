@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="本草求真"
+	author="清·黄宫绣"
+	description="">
+	<documentation file="目录.md" textEncoding="UTF-8"/>
+	<categories>
+		<category name="bcqz" description="本草求真"/>
+	</categories>
+	<fields>
+		<field name="volume" cssClass="categoryTitle" description="卷" fieldNameVisible="no" />
+		<field name="function" cssClass="section" description="功效" fieldNameVisible="no" />
+		<field name="list" description="列表" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="(\w+?)(（\w+?）)?(?=、|$)">
+				<replacement><![CDATA[<ref>$1</ref>$2]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+		</field>
+		<field name="content" description="内容" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="`([^`]+)`" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="（.+?）">
+				<replacement><![CDATA[<span style="font-size: 90%" class="note">$0</span>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+		</field>
+	</fields>
+	<data file="本草求真.md" encoding="Unicode" synonymDelimiter="、" allowEmptyLine="true">
+		<word pattern="^#">
+			<replace pattern="#" useRegex="false"/>
+		</word>
+		<row field="1" pattern="编\\卷"/>
+		<row field="2" pattern="^（.{1,2}）"/>
+		<row field="3" pattern="^〔">
+			<replace pattern="〔.+〕" replacement="&lt;b>$0&lt;/b>"/>
+		</row>
+		<row field="4" synonymPattern="`([^`]+)`"/>
+	</data>
+</config>

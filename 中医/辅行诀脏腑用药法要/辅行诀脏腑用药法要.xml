@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="辅行诀脏腑用药法要"
+	author="梁·陶弘景"
+	description="">
+	<categories>
+		<category name="fxjzf" description="辅行诀脏腑用药法要"/>
+	</categories>
+	<documentation path="经方关系.html"/>
+	<fields>
+		<field name="content" description="内容" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="（.+?）">
+				<replacement><![CDATA[<span style="font-size: 90%">$0</span>]]></replacement>
+			</replace>
+			<replace pattern="{(.+?)}">
+				<replacement><![CDATA[<em>$1</em>]]></replacement>
+			</replace>
+			<replace pattern="\*\*(.+?)\*\*">
+				<replacement><![CDATA[<strong>$1</strong>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+		</field>
+		<field name="note" description="注" valueType="标记" fullText="yes">
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+		</field>
+	</fields>
+	<data file="辅行诀脏腑用药法要.md" encoding="Unicode" synonymDelimiter="、" allowEmptyLine="true">
+		<word pattern="^#+" removePattern="true"/>
+		<row field="2" pattern="^注：" removePattern="true"/>
+		<row field="1"/>
+	</data>
+	<resource file="二十五味药物变化图.gif" />
+</config>

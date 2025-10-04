@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="伤寒明理论"
+	author="成无己"
+	description="本词典内容选自《伤寒明理论》，扼要地辨识了伤寒 50 种症候的病象和病理，选《伤寒论》常用方 20 首，强调配伍制使的关系，并以经典医著结合个人体会加以分析"
+	textEncoding="gb18030">
+	<categories>
+		<category name="shmll" description="伤寒明理论"/>
+	</categories>
+	<documentation path="目录.html"/>
+	<fields>
+		<field name="content" description="内容" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="\{([^\}]+)\}" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="\*\*(.+?)\*\*" replacement="&lt;b>$1&lt;/b>"/>
+		</field>
+		<field name="presciption" description="方" valueType="标记" fieldNameVisible="no" cssClass="quotation">
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="\*\*(.+?)\*\*" replacement="&lt;b>$1&lt;/b>"/>
+		</field>
+	</fields>
+	<data file="伤寒明理论.md" encoding="Unicode" synonymDelimiter="、" allowEmptyLine="true" multilineDefinition="true" allowEmptyPattern="false">
+		<word pattern="^#+" removePattern="true">
+			<replace pattern="方$" />
+		</word>
+		<row field="2" pattern="^方：" removePattern="true"/>
+		<row field="1"/>
+	</data>
+</config>

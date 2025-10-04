@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="本草新编"
+	author="清·陈士铎"
+	description="《本草》自神农以来，数经兵燹，又遭秦火，所传书多散轶，鲁鱼亥豕，不能无误，一字舛错，动即杀人。铎躬逢岐伯天师于燕市，得闻轩辕之道，而《本草》一书，尤殷质询，凡有所误，尽行改正。
+
+此书删繁就简，凡无关医道者，概不入选，即或气味峻烈，损多益少，与寻常细小之品，无大效验者，亦皆屏弃。
+
+本草善本，首遵《纲目》，其次则逊《经疏》。二书铎研精有素，多有发明，非辟二公，实彰秘奥。
+
+本草诸书，多首列出产、收采、修制等项，铎概不登列者，以前人考核精详，无容再论；惟七方十剂之义尚多缺略，所以畅为阐扬，更作或问或疑附后，使医理昭明，少为用药之助。
+
+是书删《神农》原本者十之三，采《名医》增入者十之二，总欲救济生人，非好为去取。
+
+气运日迁，人多柔弱，古方不可治今病者，非言补剂也，乃言攻剂耳，故所登诸品，补多于攻。
+
+《本草》非博通内典，遍览儒书，不能融会贯通，以阐扬秘旨。铎见闻未广，而资性甚钝，所读经史，每善遗忘，记一遗万之讥，实所未免，尤望当代名公之教铎也。
+
+本草贵多议论发微，不尚方法矜异。铎所以叙功效于前，发尚论于后，欲使天下后世，尽知草木之精深，人物金石之奥妙，庶不至动手用药有错。
+
+此书多得之神助，异想奇思，命笔时有不自知其然而然之象，世有知心，自能深识，不敢夸诩也。
+
+铎素学刀圭，颇欲阐扬医典，迩年来，未遑尚论。甲子秋，遇纯阳吕夫子于独秀山，即商订此书，辄蒙许可，后闻异人之教助，铎不逮者，皆吕夫子赐也。
+
+是书得于岐天师者十之五，得于长沙守仲景张夫子者十之二，得于扁鹊秦夫子者十之三。
+
+若铎鄙见，十中无一焉。
+
+铎少喜浪游，凡遇名山胜地，往往探奇不倦，登眺时，多逢异人，与之辩难刀圭，实能开荡心胸，增益神智，苟有所得，必书笥中。每入深山，见琪花瑶草、异兽珍禽，与昆虫介属异于凡种者，必咨询土人，考订靡已。倘获奇闻，必备志之，今罄登兹编。
+
+行医不读《本草》，则阴阳未识，攻补茫然，一遇异症，何从用药。况坊刻诸书，苦无善本，非多则略。铎斟酌于二者之间，繁简得宜，使读者易于观览。
+
+是书药味无多，而义理详尽，功过不掩，喜忌彰明，庶攻补可以兼施，寒热可以各用。
+
+倘谓铎多事，翻前人以出奇，或咎铎无文，轻当世而斗异，则铎岂敢。
+
+著书非居胜地，则识见不能开拓，铎幸客舟中，目观江涛汹涌，云峦层叠，助人壮怀，故得畅抒独得，颇无格格之苦。然同心甚少，考订未弘，终觉画守一隅，不能兼谈六合。
+
+铎晚年逢异人于燕市，传书甚多，著述颇富，皆发明《灵》、《素》秘奥，绝不拾世音浅沈，有利于疾病匪浅，惜家贫不能灾梨，倘有救济心殷，肯损资剞劂者，铎当罄囊与之，断不少吝，以负异人之托。
+
+山阴陈士铎远公别号朱华子识"
+	textEncoding="gb18030">
+	<categories>
+		<category name="bcxb" description="本草新编"/>
+	</categories>
+	<fields>
+		<field name="content" category="bcxb" description="内容" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="\{([^\}]+)\}" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
+				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+			</replace>
+			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="（〔批〕[^\）]+）">
+				<replacement><![CDATA[<span style="font-size: 90%" class="note">$0</span>]]></replacement>
+			</replace>
+		</field>
+		<field name="subtitle" category="bcxb" cssClass="categoryTitle" style="margin: 10pt 0 5pt 0; display: block;" description="副题" valueType="标记" fieldNameVisible="no" fullText="yes" />
+	</fields>
+	<filters>
+		<ignore pattern="^卷之"/>
+		<ignore pattern="^$"/>
+	</filters>
+	<data file="本草新编.md" encoding="GBK" startLine="90" synonymDelimiter="、" allowEmptyLine="true">
+		<word pattern="^#+" removePattern="true"/>
+		<row field="2" pattern="^《.+》$">
+		</row>
+		<row field="1">
+		</row>
+	</data>
+</config>
