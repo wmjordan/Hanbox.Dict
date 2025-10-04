@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="广东新语"
+	textEncoding="gb18030"
+	author="屈大均">
+	<documentation file="目录.md"/>
+	<documentation file="序.txt"/>
+	<documentation file="自序.txt"/>
+	<fields>
+		<field name="content" description="内容" valueType="标记" fieldNameVisible="no">
+			<replace pattern="`(.+?)`">
+				<replacement>
+					<b>$1</b>
+				</replacement>
+			</replace>
+			<replace pattern="：“([^\[`]+?)”">
+				<replacement>：“<span class="quotation">$1</span>”</replacement>
+			</replace>
+			<replace pattern="\*\*(.+?)\*\*">
+				<replacement>
+					<b>$1</b>
+				</replacement>
+			</replace>
+		</field>
+	</fields>
+	<data file="广东新语.md" encoding="unicode" allowEmptyPattern="false" multilineDefinition="no">
+		<word pattern="^## " removePattern="yes"/>
+		<row field="1">
+		</row>
+	</data>
+</config>

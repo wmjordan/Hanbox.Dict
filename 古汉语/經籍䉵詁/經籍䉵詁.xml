@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<config
+	title="經籍䉵詁"
+	author="阮元"
+	publisher="揚州阮氏琅嬛僊館栞本"
+	textEncoding="gb18030"
+	enableCharacterDictionary="yes">
+	<documentation path="錢大昕序.md"/>
+	<documentation path="王引之序.md"/>
+	<documentation path="臧鏞堂後序.md"/>
+	<fields>
+		<field name="content" description="诂" valueType="标记" fieldNameVisible="no" fullText="yes">
+			<replace pattern="`(.+?)`" replacement="&lt;b>$1&lt;/b>"/>
+			<replace pattern="】(集注|釋文|引|又|注[引作]|注。)">】.$1</replace>
+			<replace pattern="(索隱[引]?|[李張何劉薛郭黃馬孫舊鄭曹虞徐崔]注[引]?|司農注|注。)(?=[。【]|$)">.$1</replace>
+			<replace pattern="(】[作引]?)([^【\.]+?)(集注。|集解|釋文|正義|索隱|皇疏|[注傳箋]$|(?:釋文|[注傳箋])[。，]|$|[\.。【])">
+				<replacement>$1<span class="quotation">$2</span>$3</replacement>
+			</replace>
+			<replace pattern="^(\w[^者]|[^夫][^也]者|)([，：])">
+				<replacement><b>$1</b>$2</replacement>
+			</replace>
+			<replace pattern="^([^、，。：]+)：">
+				<replacement><b>$1</b>：</replacement>
+			</replace>
+			<replace pattern="[\._]" />
+			<replace pattern="【.+">
+				<replacement><span style="font-size:90%">$0</span></replacement>
+			</replace>
+			<replace pattern="【.+?】">
+				<replacement><span class="note">$0</span></replacement>
+			</replace>
+		</field>
+	</fields>
+	<data file="經籍䉵詁.md" encoding="utf-8" multilineDefinition="no" synonymDelimiter="|" allowEmptyPattern="false">
+		<word pattern="^# " removePattern="yes"/>
+		<row field="content" synonymPattern="`(.+?)`|^([^、，。：]+)：|^([^、，。：]+)、([^、，。：]+)：|^(\w[^者])[，：]|^([^夫][^也])者[，：]|，(?:曰|謂之)([^曰][^也])。"/>
+	</data>
+</config>
