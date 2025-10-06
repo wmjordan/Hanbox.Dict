@@ -12,21 +12,22 @@
 		<field name="function" cssClass="section" description="功效" fieldNameVisible="no" />
 		<field name="list" description="列表" valueType="标记" fieldNameVisible="no" fullText="yes">
 			<replace pattern="(\w+?)(（\w+?）)?(?=、|$)">
-				<replacement><![CDATA[<ref>$1</ref>$2]]></replacement>
+				<replacement><ref>$1</ref>$2</replacement>
 			</replace>
 			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
-				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+				<replacement><ref q="$2" title="$2">$1</ref></replacement>
 			</replace>
 		</field>
 		<field name="content" description="内容" valueType="标记" fieldNameVisible="no" fullText="yes">
 			<replace pattern="`([^`]+)`" replacement="&lt;b>$1&lt;/b>"/>
 			<replace pattern="（.+?）">
-				<replacement><![CDATA[<span style="font-size: 90%" class="note">$0</span>]]></replacement>
+				<replacement><span style="font-size: 90%" class="note">$0</span></replacement>
 			</replace>
 			<replace pattern="\[([^\]]+)\]\(([^\)]+)\)">
-				<replacement><![CDATA[<ref q="$2" title="$2">$1</ref>]]></replacement>
+				<replacement><ref q="$2" title="$2">$1</ref></replacement>
 			</replace>
 			<replace pattern="\[([^\]]+)\]" replacement="&lt;ref>$1&lt;/ref>"/>
+			<replace pattern="\*\*([\*]+?)\*\*]" replacement="&lt;b>$1&lt;/b>"/>
 		</field>
 	</fields>
 	<data file="本草求真.md" encoding="Unicode" synonymDelimiter="、" allowEmptyLine="true">
