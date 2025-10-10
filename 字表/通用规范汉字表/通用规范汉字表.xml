@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="通用规范汉字表"
+	author=""
+	publisher="教育部、国家语言文字工作委员会"
+	version="2013年8月"
+	creator="汉文博士"
+	url="https://www.gov.cn/zwgk/2013-08/19/content_2469793.htm">
+	<documentation file="国务院关于公布《通用规范汉字表》的通知.md"/>
+	<documentation file="说明.txt"/>
+	<documentation file="附注.md" title="字表附注"/>
+	<data file="通用规范汉字表（一级字表）.txt" encoding="UTF-8" hanziList="通用规范汉字表（一级字表）"/>
+	<data file="通用规范汉字表（二级字表）.txt" encoding="UTF-8" hanziList="通用规范汉字表（二级字表）"/>
+	<data file="通用规范汉字表（三级字表）.txt" encoding="UTF-8" hanziList="通用规范汉字表（三级字表）"/>
+	<data file="通用规范汉字表（繁体字）.txt" encoding="UTF-8" hanziList="通用规范汉字表（繁体字）"/>
+</config>

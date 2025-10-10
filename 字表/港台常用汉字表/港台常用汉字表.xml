@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="港台常用汉字表"
+	description="香港和台湾常用的字表"
+	url="https://github.com/zispace/hanzi-chars">
+	<data file="五大码（Big5）.txt" encoding="UTF-8" hanziList="五大码（Big5）"/>
+	<data file="香港增补字符集.txt" encoding="UTF-8" hanziList="香港增补字符集"/>
+	<data file="香港常用字表.txt" encoding="UTF-8" hanziList="香港常用字表"/>
+	<data file="常用香港外字表.txt" encoding="UTF-8" hanziList="常用香港外字表"/>
+	<data file="台湾常用国字表.txt" encoding="UTF-8" hanziList="台湾常用国字表"/>
+	<data file="台湾次常用国字表.txt" encoding="UTF-8" hanziList="台湾次常用国字表"/>
+</config>
