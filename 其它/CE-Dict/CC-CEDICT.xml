@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="gbk"?>
+<config
+	title="CC-CEDICT"
+	description="CEDICT 项目由 Paul Denisowski 始创于1997年10月，目标是提供一份在线、可下载的、公共领域的汉英辞典。CC-CEDICT 是 CEDICT 项目的延续，该项目是公开的，以 Creative Commons Attribution-Share Alike 4.0 许可在互联网上发布。在互联网众多贡献者的参与下，目前已收录了十万多汉语字词的英文注释。"
+	url="http://cc-cedict.org"
+	author="http://www.mdbg.net"
+	version="2025-10-19"
+	textEncoding="utf8"
+	icon="icon.jpg"
+	enableCharacterDictionary="yes"
+	blockBits="6">
+	<categories>
+		<category name="cccedict" description="CC-CEDICT"/>
+	</categories>
+	<fields>
+		<field name="reading" category="cccedict" description="读音" valueType="拼音" resetFieldNumbers="2"/>
+		<field name="definition" category="cccedict" description="释义" valueType="标记" fieldNameVisible="no" fullText="yes" autoNumberFormat="1. ">
+			<replace pattern="CL\:" replacement="量词: " />
+			<replace pattern="\b(fig|lit|abbr)\." replacement="&lt;i>$0&lt;/i>" />
+			<replace>
+				<pattern><![CDATA[(?<=[ ,])([^ ,\|]+?)(\[[^\]]+\])]]></pattern>
+				<replacement><ref>$1</ref>$2</replacement>
+			</replace>
+			<replace>
+				<pattern><![CDATA[(?<=[ ,])([^ ,\|]+?)\|[^\[]+(\[[^\]]+\])]]></pattern>
+				<replacement><ref>$1</ref>$2</replacement>
+			</replace>
+			<replace>
+				<pattern><![CDATA[(?<=[ ,])([^ ,\|]+?)\|[^ ,]+([ ,]|$)]]></pattern>
+				<replacement><ref>$1</ref>$2</replacement>
+			</replace>
+			<replace>
+				<pattern><![CDATA[\[([^\]]+)\]]]></pattern>
+				<replacement>[<i><py>$1</py></i>]</replacement>
+			</replace>
+			<pinyin delimiter=" " />
+		</field>
+	</fields>
+	<filters>
+		<replace pattern="^([^ ]+?) [^ ]+? " replacement="$1	" />
+		<replace pattern="^([^	]+?)	\[([^\]]+?)\] " replacement="$1	$2	" />
+	</filters>
+	<data file="cedict_1_0_ts_utf-8_mdbg.zip#cedict_ts.u8" encoding="Utf-8">
+		<column field="1" />
+		<column field="2" valueDelimiter="/"/>
+	</data>
+</config>
